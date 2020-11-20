@@ -1,29 +1,36 @@
 <template>
-  <!-- Datos sobre el contrato mostrados al inicio de la pantalla -->
-  <v-container width="100%">
-    <v-card class="d-flex" rounded>
+  <div class="mt-12">
+    <!-- Datos sobre el contrato mostrados al inicio de la pantalla -->
+    <v-card class="d-flex mt-10 pa-0" flat>
       <v-container>
-        <v-card-title>
-          Current platform balance:
-        </v-card-title>
-        <v-card-subtitle>
-          9,655,432.12 TRX
-        </v-card-subtitle>
-      </v-container>
+        <v-row align="center">
+          <v-col md="4">
+            <h4>
+              Current platform balance:
+            </h4>
+            <h5 class="grey--text">
+              9,655,432.12 TRX
+            </h5>
+          </v-col>
 
-      <v-container>
-        <v-card-title>
-          Current Platform Profit - 2.12 %
-        </v-card-title>
-        <v-card-subtitle>
-          Next Change to 2.13 % in 920,128.16 TRX
-        </v-card-subtitle>
+          <v-col md="4">
+            <h4>
+              Current Platform Profit - 2.12 %
+            </h4>
+            <h5 class="grey--text">
+              Next Change to 2.13 % in 920,128.16 TRX
+            </h5>
+          </v-col>
+
+          <v-col md="4">
+            <v-card-actions>
+              <v-btn class="primary">Check Contract</v-btn>
+            </v-card-actions>
+          </v-col>
+        </v-row>
       </v-container>
-      <v-card-title>
-        <v-btn class="primary">Check Contract</v-btn>
-      </v-card-title>
     </v-card>
-  </v-container>
+  </div>
 </template>
 
 <script>

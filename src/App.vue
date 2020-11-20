@@ -1,61 +1,14 @@
 <template>
   <v-app class="app">
-    <!-- Componente Nav -->
-    <Navigation />
-    <v-main>
-      <v-row justify="center">
-        <v-col cols="8">
-          <!-- Una vista para revisar el contrato -->
-          <CheckContract />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="6">
-          <!-- Indicando de qué va -->
-          <Welcome />
-        </v-col>
-
-        <v-col cols="6">
-          <!-- Info del Profit -->
-          <CurrentProfit />
-        </v-col>
-      </v-row>
-
-      <v-row justify="end">
-        <v-col cols="4">
-          <!-- Calculadora de intereses -->
-          <InterestCalculator />
-        </v-col>
-      </v-row>
-
-      <v-row justify="center">
-        <v-col cols="10">
-          <!-- Respuesta de los intereses calculados anteriormente -->
-          <GetStarted />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12">
-          <!-- Por qué invertir en este contrato -->
-          <Why />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12">
-          <!-- Condiciones para inversion -->
-          <InvestConditions />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12">
-          <!-- Cómo hacer un depósito -->
-          <How />
-        </v-col>
-      </v-row>
+    <!-- NAVIGATION Top de la pantalla será transparente -->
+    <Navigation :color="color" :flat="flat" />
+    <v-main class="ma-0 pa-0">
+      <Welcome />
+      <InterestCalculator />
+      <GetStarted />
+      <Why />
+      <InvestConditions />
+      <How />
     </v-main>
 
     <v-scale-transition>
@@ -78,11 +31,18 @@
   </v-app>
 </template>
 
+<style scoped>
+.v-main {
+  background-image: url("~@/assets/img/bgMain.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+</style>
+
 <script>
 import Navigation from "@/components/Navigation";
-import CheckContract from "@/components/CheckContract";
 import Welcome from "@/components/Welcome";
-import CurrentProfit from "@/components/CurrentProfit";
 import InterestCalculator from "@/components/InterestCalculator";
 import GetStarted from "@/components/GetStarted";
 import Why from "@/components/Why";
@@ -95,9 +55,7 @@ export default {
 
   components: {
     Navigation,
-    CheckContract,
     Welcome,
-    CurrentProfit,
     InvestConditions,
     Footer,
     How,
@@ -105,9 +63,29 @@ export default {
     GetStarted,
     InterestCalculator
   },
+  created() {
+    const top = window.pageYOffset || 0;
+    if (top <= 60) {
+      this.color = "transparent";
+      this.flat = true;
+    }
+  },
   data: () => ({
-    fab: null
+    fab: null,
+    color: "",
+    flat: null
   }),
+  watch: {
+    fab(value) {
+      if (value) {
+        this.color = "primary";
+        this.flat = false;
+      } else {
+        this.color = "transparent";
+        this.flat = true;
+      }
+    }
+  },
   methods: {
     onScroll(e) {
       if (typeof window === "undefined") return;
